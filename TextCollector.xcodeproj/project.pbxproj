@@ -16,9 +16,14 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				AddSnippetIntent.swift,
+				AddSnippetView.swift,
 				ContentView.swift,
+				EditSnippetView.swift,
 				Persistence.swift,
+				SnippetDetailView.swift,
+				SnippetListView.swift,
 				SnippetManager.swift,
+				SnippetRowView.swift,
 				TestData.swift,
 				TextCollector.xcdatamodeld,
 				TextCollectorApp.swift,
@@ -31,9 +36,14 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				AddSnippetIntent.swift,
+				AddSnippetView.swift,
 				ContentView.swift,
+				EditSnippetView.swift,
 				Persistence.swift,
+				SnippetDetailView.swift,
+				SnippetListView.swift,
 				SnippetManager.swift,
+				SnippetRowView.swift,
 				TestData.swift,
 				TextCollector.xcdatamodeld,
 				TextCollectorApp.swift,

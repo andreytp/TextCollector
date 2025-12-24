@@ -5,7 +5,7 @@
 //  Created by   andriik0 on 12/23/25.
 //
 
-import CoreData
+internal import CoreData
 
 struct PersistenceController {
     static let shared = PersistenceController()
@@ -51,26 +51,10 @@ struct PersistenceController {
     // Preview helper
     static var preview: PersistenceController = {
         let controller = PersistenceController(inMemory: true)
-        let viewContext = controller.container.viewContext
-        
-        // Create sample data for previews
-        for i in 0..<5 {
-            let snippet = TextSnippet(context: viewContext)
-            snippet.id = UUID()
-            snippet.content = "Sample snippet \(i + 1)"
-            snippet.timestamp = Date()
-            snippet.isFavorite = i % 2 == 0
-        }
-        
-        do {
-            try viewContext.save()
-        } catch {
-            let nsError = error as NSError
-            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-        }
-        
+        TestData.createSampleSnippets(in: controller.container.viewContext)
         return controller
     }()
+
 }
 
 // MARK: - Migration Guide to iCloud

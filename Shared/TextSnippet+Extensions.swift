@@ -1,5 +1,5 @@
 import Foundation
-import CoreData
+internal import CoreData
 
 // MARK: - TextSnippet Convenience Extensions
 extension TextSnippet {

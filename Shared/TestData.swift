@@ -1,5 +1,5 @@
 import Foundation
-import CoreData
+internal import CoreData
 
 /// Helper to create sample data for testing and previews
 struct TestData {

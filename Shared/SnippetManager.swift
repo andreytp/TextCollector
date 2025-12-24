@@ -1,5 +1,5 @@
 import Foundation
-import CoreData
+internal import CoreData
 
 /// Centralized manager for snippet operations
 class SnippetManager {

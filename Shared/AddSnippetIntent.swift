@@ -7,7 +7,7 @@
 
 
 import AppIntents
-import CoreData
+internal import CoreData
 
 /// App Intent for adding text snippets via Shortcuts
 struct AddSnippetIntent: AppIntent {

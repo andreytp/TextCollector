@@ -1,6 +1,6 @@
 import SwiftUI
 import AppIntents
-import CoreData
+internal import CoreData
 
 @main
 struct TextCollectorApp: App {
