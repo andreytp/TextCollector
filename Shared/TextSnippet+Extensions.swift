@@ -7,7 +7,24 @@ extension TextSnippet {
     /// Computed property to get tags as an array of strings
     var tagNames: [String] {
         let tagSet = tags as? Set<Tag> ?? []
-        return tagSet.map { $0.name ?? "" }.sorted()
+        return tagSet.compactMap { $0.name }.sorted()
+    }
+    
+    /// Safe unwrapped properties
+    var safeId: UUID {
+        id ?? UUID()
+    }
+    
+    var safeContent: String {
+        content ?? ""
+    }
+    
+    var safeTimestamp: Date {
+        timestamp ?? Date()
+    }
+    
+    var safeLastModified: Date {
+        lastModified ?? Date()
     }
     
     /// Convenience initializer for creating new snippets
@@ -20,13 +37,17 @@ extension TextSnippet {
         in context: NSManagedObjectContext
     ) -> TextSnippet {
         let snippet = TextSnippet(context: context)
+        
+        // ALWAYS set these required values
         snippet.id = UUID()
         snippet.content = content
-        snippet.source = source
-        snippet.category = category
         snippet.timestamp = Date()
         snippet.lastModified = Date()
         snippet.isFavorite = isFavorite
+        
+        // Set optional values
+        snippet.source = source
+        snippet.category = category
         
         // Add tags
         for tagName in tags {
@@ -63,6 +84,11 @@ extension TextSnippet {
 // MARK: - Tag Convenience Extensions
 extension Tag {
     
+    /// Safe unwrapped name
+    var safeName: String {
+        name ?? ""
+    }
+    
     /// Find existing tag or create new one
     static func findOrCreate(name: String, in context: NSManagedObjectContext) -> Tag {
         let fetchRequest: NSFetchRequest<Tag> = Tag.fetchRequest()
@@ -73,7 +99,7 @@ extension Tag {
             return existingTag
         }
         
-        // Create new tag
+        // Create new tag - ALWAYS set required values
         let newTag = Tag(context: context)
         newTag.id = UUID()
         newTag.name = name
@@ -122,5 +148,3 @@ extension TextSnippet {
         return (try? context.fetch(fetchRequest)) ?? []
     }
 }
-
-

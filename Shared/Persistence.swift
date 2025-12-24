@@ -9,49 +9,80 @@ import CoreData
 
 struct PersistenceController {
     static let shared = PersistenceController()
-
-    @MainActor
-    static let preview: PersistenceController = {
-        let result = PersistenceController(inMemory: true)
-        let viewContext = result.container.viewContext
-        for _ in 0..<10 {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
+    
+    // Use NSPersistentContainer for now (local only)
+    // Switch to NSPersistentCloudKitContainer when Apple Developer account is active
+    let container: NSPersistentContainer
+    
+    init(inMemory: Bool = false) {
+        // TODO: Switch to NSPersistentCloudKitContainer when enrolled in Apple Developer Program
+        container = NSPersistentContainer(name: "TextCollector")
+        
+        if inMemory {
+            container.persistentStoreDescriptions.first?.url = URL(fileURLWithPath: "/dev/null")
+        } else {
+            // Configure for App Group sharing (works without paid account)
+            if let description = container.persistentStoreDescriptions.first {
+                // Use App Group for data sharing with Shortcuts extension
+                let appGroupID = "group.com.yourname.textcollector.shared"
+                if let containerURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: appGroupID) {
+                    let storeURL = containerURL.appendingPathComponent("TextCollector.sqlite")
+                    description.url = storeURL
+                }
+                
+                // These settings are compatible with both local and CloudKit storage
+                description.setOption(true as NSNumber,
+                                    forKey: NSPersistentHistoryTrackingKey)
+            }
         }
+        
+        container.loadPersistentStores { description, error in
+            if let error = error {
+                // Handle error appropriately in production
+                fatalError("Unable to load persistent stores: \(error)")
+            }
+        }
+        
+        // Automatically merge changes
+        container.viewContext.automaticallyMergesChangesFromParent = true
+        container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+    }
+    
+    // Preview helper
+    static var preview: PersistenceController = {
+        let controller = PersistenceController(inMemory: true)
+        let viewContext = controller.container.viewContext
+        
+        // Create sample data for previews
+        for i in 0..<5 {
+            let snippet = TextSnippet(context: viewContext)
+            snippet.id = UUID()
+            snippet.content = "Sample snippet \(i + 1)"
+            snippet.timestamp = Date()
+            snippet.isFavorite = i % 2 == 0
+        }
+        
         do {
             try viewContext.save()
         } catch {
-            // Replace this implementation with code to handle the error appropriately.
-            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
             let nsError = error as NSError
             fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
         }
-        return result
+        
+        return controller
     }()
-
-    let container: NSPersistentCloudKitContainer
-
-    init(inMemory: Bool = false) {
-        container = NSPersistentCloudKitContainer(name: "TextCollector")
-        if inMemory {
-            container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
-        }
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
-            if let error = error as NSError? {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-
-                /*
-                 Typical reasons for an error here include:
-                 * The parent directory does not exist, cannot be created, or disallows writing.
-                 * The persistent store is not accessible, due to permissions or data protection when the device is locked.
-                 * The device is out of space.
-                 * The store could not be migrated to the current model version.
-                 Check the error message to determine what the actual problem was.
-                 */
-                fatalError("Unresolved error \(error), \(error.userInfo)")
-            }
-        })
-        container.viewContext.automaticallyMergesChangesFromParent = true
-    }
 }
+
+// MARK: - Migration Guide to iCloud
+/*
+ When ready to enable iCloud sync (requires Apple Developer Program):
+ 
+ 1. Change NSPersistentContainer to NSPersistentCloudKitContainer
+ 2. Add CloudKit configuration:
+    description.cloudKitContainerOptions = NSPersistentCloudKitContainerOptions(
+        containerIdentifier: "iCloud.$(CFBundleIdentifier)"
+    )
+ 3. Enable iCloud capability in Xcode
+ 4. That's it! Existing data will automatically sync
+ */
+

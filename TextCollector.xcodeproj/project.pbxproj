@@ -7,25 +7,15 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		E782AB9E2EFB62CC00C33F5C /* Develop.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Develop.entitlements; sourceTree = "<group>"; };
 		E782ABA32EFB67C800C33F5C /* iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		E782ABB52EFB682B00C33F5C /* TextCollector iOSDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "TextCollector iOSDebug.entitlements"; sourceTree = "<group>"; };
 		E782ABBA2EFB6CE400C33F5C /* macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = macOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		E782ABCD2EFB6D1500C33F5C /* macOSDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOSDebug.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		E782ABB12EFB67C900C33F5C /* Exceptions for "TextCollector" folder in "iOS" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = E782ABA22EFB67C800C33F5C /* iOS */;
-		};
 		E782ABD32EFB7E9B00C33F5C /* Exceptions for "Shared" folder in "iOS" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Info.plist,
+				ContentView.swift,
 				Persistence.swift,
 				SnippetManager.swift,
 				TestData.swift,
@@ -38,7 +28,7 @@
 		E782ABD42EFB7E9B00C33F5C /* Exceptions for "Shared" folder in "macOS" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Info.plist,
+				ContentView.swift,
 				Persistence.swift,
 				SnippetManager.swift,
 				TestData.swift,
@@ -57,20 +47,10 @@
 				E782ABD32EFB7E9B00C33F5C /* Exceptions for "Shared" folder in "iOS" target */,
 				E782ABD42EFB7E9B00C33F5C /* Exceptions for "Shared" folder in "macOS" target */,
 			);
+			explicitFileTypes = {
+				TextCollector.xcdatamodeld/TextCollector.xcdatamodel = wrapper.xcdatamodel;
+			};
 			path = Shared;
-			sourceTree = "<group>";
-		};
-		E782ABA42EFB67C800C33F5C /* TextCollector */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				E782ABB12EFB67C900C33F5C /* Exceptions for "TextCollector" folder in "iOS" target */,
-			);
-			path = TextCollector;
-			sourceTree = "<group>";
-		};
-		E782ABBB2EFB6CE400C33F5C /* TextCollector */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = TextCollector;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -96,14 +76,7 @@
 		E782AB722EFB5DD100C33F5C = {
 			isa = PBXGroup;
 			children = (
-				E782ABB52EFB682B00C33F5C /* TextCollector iOSDebug.entitlements */,
-				E782AB9E2EFB62CC00C33F5C /* Develop.entitlements */,
-				E782AB942EFB5ED300C33F5C /* TextCollector.xcdatamodeld */,
-				E782AB932EFB5EB800C33F5C /* macOS */,
-				E782AB922EFB5EAB00C33F5C /* iOS */,
 				E782AB7D2EFB5DD100C33F5C /* Shared */,
-				E782ABA42EFB67C800C33F5C /* TextCollector */,
-				E782ABBB2EFB6CE400C33F5C /* TextCollector */,
 				E782AB7C2EFB5DD100C33F5C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -115,28 +88,6 @@
 				E782ABBA2EFB6CE400C33F5C /* macOS.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		E782AB922EFB5EAB00C33F5C /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = iOS;
-			sourceTree = "<group>";
-		};
-		E782AB932EFB5EB800C33F5C /* macOS */ = {
-			isa = PBXGroup;
-			children = (
-				E782ABCD2EFB6D1500C33F5C /* macOSDebug.entitlements */,
-			);
-			path = macOS;
-			sourceTree = "<group>";
-		};
-		E782AB942EFB5ED300C33F5C /* TextCollector.xcdatamodeld */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = TextCollector.xcdatamodeld;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -153,9 +104,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				E782ABA42EFB67C800C33F5C /* TextCollector */,
 			);
 			name = iOS;
 			packageProductDependencies = (
@@ -175,9 +123,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				E782ABBB2EFB6CE400C33F5C /* TextCollector */,
 			);
 			name = macOS;
 			packageProductDependencies = (
@@ -320,59 +265,6 @@
 			};
 			name = Debug;
 		};
-		E782AB902EFB5DD300C33F5C /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				MTL_FAST_MATH = YES;
-				SWIFT_COMPILATION_MODE = wholemodule;
-			};
-			name = Release;
-		};
 		E782ABB32EFB67C900C33F5C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -384,7 +276,6 @@
 				DEVELOPMENT_TEAM = KLSR7QLNYM;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = TextCollector/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -408,43 +299,6 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
-		};
-		E782ABB42EFB67C900C33F5C /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = TextCollector/TextCollector.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = KLSR7QLNYM;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = TextCollector/Info.plist;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.andy-ginger.textcollector.TextCollector";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
 		};
 		E782ABC82EFB6CE500C33F5C /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -481,40 +335,6 @@
 			};
 			name = Debug;
 		};
-		E782ABC92EFB6CE500C33F5C /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = KLSR7QLNYM;
-				ENABLE_APP_SANDBOX = YES;
-				ENABLE_HARDENED_RUNTIME = YES;
-				ENABLE_PREVIEWS = YES;
-				ENABLE_USER_SELECTED_FILES = readonly;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 26.2;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.andy-ginger.textcollector.TextCollector";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				REGISTER_APP_GROUPS = YES;
-				SDKROOT = macosx;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -522,28 +342,25 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E782AB8F2EFB5DD300C33F5C /* Debug */,
-				E782AB902EFB5DD300C33F5C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		E782ABB22EFB67C900C33F5C /* Build configuration list for PBXNativeTarget "iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E782ABB32EFB67C900C33F5C /* Debug */,
-				E782ABB42EFB67C900C33F5C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		E782ABC72EFB6CE500C33F5C /* Build configuration list for PBXNativeTarget "macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E782ABC82EFB6CE500C33F5C /* Debug */,
-				E782ABC92EFB6CE500C33F5C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};
