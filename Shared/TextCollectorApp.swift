@@ -1,4 +1,5 @@
 import SwiftUI
+import AppIntents
 import CoreData
 
 @main
@@ -10,5 +11,13 @@ struct TextCollectorApp: App {
             ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
+    }
+}
+
+// MARK: - App Intent Configuration
+// This makes the app discoverable by Shortcuts
+extension TextCollectorApp {
+    static var appIntents: [any AppIntent.Type] {
+        [AddSnippetIntent.self]
     }
 }

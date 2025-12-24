@@ -15,12 +15,14 @@
 		E782ABD32EFB7E9B00C33F5C /* Exceptions for "Shared" folder in "iOS" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				AddSnippetIntent.swift,
 				ContentView.swift,
 				Persistence.swift,
 				SnippetManager.swift,
 				TestData.swift,
 				TextCollector.xcdatamodeld,
 				TextCollectorApp.swift,
+				TextCollectorShortcuts.swift,
 				"TextSnippet+Extensions.swift",
 			);
 			target = E782ABA22EFB67C800C33F5C /* iOS */;
@@ -28,12 +30,14 @@
 		E782ABD42EFB7E9B00C33F5C /* Exceptions for "Shared" folder in "macOS" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				AddSnippetIntent.swift,
 				ContentView.swift,
 				Persistence.swift,
 				SnippetManager.swift,
 				TestData.swift,
 				TextCollector.xcdatamodeld,
 				TextCollectorApp.swift,
+				TextCollectorShortcuts.swift,
 				"TextSnippet+Extensions.swift",
 			);
 			target = E782ABB92EFB6CE400C33F5C /* macOS */;
