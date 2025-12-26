@@ -55,7 +55,11 @@ struct SnippetListView: View {
             }
             .onDelete(perform: deleteSnippets)
         }
+#if os(iOS)
         .listStyle(.insetGrouped)
+#else
+        .listStyle(.inset)
+#endif
         .refreshable {
             // Pull to refresh (context automatically refreshes)
         }

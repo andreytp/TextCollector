@@ -24,7 +24,8 @@ struct PersistenceController {
             // Configure for App Group sharing (works without paid account)
             if let description = container.persistentStoreDescriptions.first {
                 // Use App Group for data sharing with Shortcuts extension
-                let appGroupID = "group.com.yourname.textcollector.shared"
+                let appGroupID = "group.com.andy-ginger.textcollector.shared"
+                
                 if let containerURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: appGroupID) {
                     let storeURL = containerURL.appendingPathComponent("TextCollector.sqlite")
                     description.url = storeURL

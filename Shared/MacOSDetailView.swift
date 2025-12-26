@@ -1,5 +1,16 @@
+//
+//  MacOSDetailView.swift
+//  TextCollector
+//
+//  Created by   andriik0 on 12/24/25.
+//
+
+
 import SwiftUI
+internal import CoreData
+#if canImport(AppKit)
 import AppKit
+#endif
 
 struct MacOSDetailView: View {
     @Environment(\.managedObjectContext) private var viewContext
@@ -36,7 +47,11 @@ struct MacOSDetailView: View {
             .padding(24)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-        .background(Color(nsColor: .textBackgroundColor))
+#if canImport(AppKit)
+        .background(Color(NSColor.textBackgroundColor))
+#else
+        .background(Color(.systemBackground))
+#endif
         .sheet(isPresented: $isEditing) {
             EditSnippetView(snippet: snippet)
         }
@@ -109,7 +124,11 @@ struct MacOSDetailView: View {
                 .textSelection(.enabled)
                 .padding()
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .background(Color(nsColor: .controlBackgroundColor))
+#if canImport(AppKit)
+                .background(Color(NSColor.controlBackgroundColor))
+#else
+                .background(Color(.secondarySystemBackground))
+#endif
                 .cornerRadius(8)
         }
     }
@@ -139,8 +158,11 @@ struct MacOSDetailView: View {
                     )
                 }
             }
-            .padding()
-            .background(Color(nsColor: .controlBackgroundColor))
+#if canImport(AppKit)
+            .background(Color(NSColor.controlBackgroundColor))
+#else
+            .background(Color(.secondarySystemBackground))
+#endif
             .cornerRadius(8)
         }
     }
@@ -194,7 +216,11 @@ struct MacOSDetailView: View {
                 .font(.body)
                 .padding()
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .background(Color(nsColor: .controlBackgroundColor))
+#if canImport(AppKit)
+                .background(Color(NSColor.controlBackgroundColor))
+#else
+                .background(Color(.secondarySystemBackground))
+#endif
                 .cornerRadius(8)
         }
     }
@@ -215,9 +241,13 @@ struct MacOSDetailView: View {
     }
     
     private func copyToClipboard() {
+        #if canImport(AppKit)
         let pasteboard = NSPasteboard.general
         pasteboard.clearContents()
         pasteboard.setString(snippet.content ?? "", forType: .string)
+        #else
+        // AppKit is not available on this platform. Consider adding a platform-specific implementation (e.g., UIPasteboard on iOS).
+        #endif
     }
     
     private func deleteSnippet() {

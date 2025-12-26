@@ -41,7 +41,15 @@ struct AddSnippetView: View {
                     TextField("Category (optional)", text: $category)
                     
                     TextField("Tags (comma-separated)", text: $tagsInput)
-                        .textInputAutocapitalization(.never)
+#if os(iOS)
+    if #available(iOS 16.0, *) {
+        .textInputAutocapitalization(.never)
+        .autocorrectionDisabled(true)
+    } else {
+        .autocapitalization(.none)
+        .disableAutocorrection(true)
+    }
+#endif
                 }
                 
                 Section("Notes") {
@@ -54,7 +62,9 @@ struct AddSnippetView: View {
                 }
             }
             .navigationTitle("New Snippet")
+#if os(iOS)
             .navigationBarTitleDisplayMode(.inline)
+#endif
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel") {

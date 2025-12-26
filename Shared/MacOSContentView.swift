@@ -1,5 +1,13 @@
+//
+//  MacOSContentView.swift
+//  TextCollector
+//
+//  Created by   andriik0 on 12/24/25.
+//
+
+
 import SwiftUI
-import CoreData
+internal import CoreData
 
 struct MacOSContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
@@ -99,7 +107,7 @@ struct MacOSContentView: View {
                     .font(.subheadline)
             }
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        
         .padding()
     }
     
@@ -119,7 +127,9 @@ struct MacOSContentView: View {
                 .multilineTextAlignment(.center)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color(nsColor: .textBackgroundColor))
+
+
+        .background(Color(NSColor.textBackgroundColor))
     }
     
     // MARK: - Computed Properties
@@ -173,3 +183,4 @@ struct MacOSContentView: View {
         .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
         .frame(width: 900, height: 600)
 }
+

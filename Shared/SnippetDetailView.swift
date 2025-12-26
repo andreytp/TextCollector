@@ -38,7 +38,9 @@ struct SnippetDetailView: View {
             .padding()
         }
         .navigationTitle("Snippet")
+        #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
+        #endif
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
                 Menu {
@@ -91,7 +93,9 @@ struct SnippetDetailView: View {
                 .textSelection(.enabled)
                 .padding()
                 .frame(maxWidth: .infinity, alignment: .leading)
+            #if os(iOS)
                 .background(Color(.secondarySystemBackground))
+            #endif
                 .cornerRadius(12)
         }
     }
@@ -124,7 +128,9 @@ struct SnippetDetailView: View {
                 )
             }
             .padding()
+            #if os(iOS)
             .background(Color(.secondarySystemBackground))
+            #endif
             .cornerRadius(12)
         }
     }
@@ -177,7 +183,9 @@ struct SnippetDetailView: View {
                     .font(.body)
                     .padding()
                     .frame(maxWidth: .infinity, alignment: .leading)
+                #if os(iOS)
                     .background(Color(.secondarySystemBackground))
+                #endif
                     .cornerRadius(12)
             } else {
                 Text("No notes")

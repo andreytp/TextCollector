@@ -1,4 +1,13 @@
+//
+//  MacOSSidebarRow.swift
+//  TextCollector
+//
+//  Created by   andriik0 on 12/24/25.
+//
+
+
 import SwiftUI
+internal import CoreData
 
 struct MacOSSidebarRow: View {
     @ObservedObject var snippet: TextSnippet

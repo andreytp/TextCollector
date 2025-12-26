@@ -36,7 +36,7 @@ struct EditSnippetView: View {
                     TextField("Category (optional)", text: $category)
                     
                     TextField("Tags (comma-separated)", text: $tagsInput)
-                        .textInputAutocapitalization(.never)
+                        .noTextInputAutocapitalization()
                 }
                 
                 Section("Notes") {
@@ -49,7 +49,9 @@ struct EditSnippetView: View {
                 }
             }
             .navigationTitle("Edit Snippet")
+#if os(iOS)
             .navigationBarTitleDisplayMode(.inline)
+#endif
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel") {
@@ -115,6 +117,21 @@ struct EditSnippetView: View {
     }
 }
 
+private extension View {
+    @ViewBuilder
+    func noTextInputAutocapitalization() -> some View {
+        #if os(iOS)
+        if #available(iOS 16.0, *) {
+            self.textInputAutocapitalization(.never)
+        } else {
+            self.autocapitalization(.none)
+        }
+        #else
+        self
+        #endif
+    }
+}
+
 #Preview {
     let context = PersistenceController.preview.container.viewContext
     let snippet = TextSnippet.create(
@@ -128,3 +145,4 @@ struct EditSnippetView: View {
     return EditSnippetView(snippet: snippet)
         .environment(\.managedObjectContext, context)
 }
+

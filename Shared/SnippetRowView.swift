@@ -92,5 +92,9 @@ struct SnippetRowView: View {
     return List {
         SnippetRowView(snippet: snippet)
     }
+#if os(iOS)
     .listStyle(.insetGrouped)
+#else
+    .listStyle(.inset)
+#endif
 }

@@ -4,7 +4,11 @@ internal import CoreData
 
 struct ContentView: View {
     var body: some View {
+        #if os(iOS)
         SnippetListView()
+        #elseif os(macOS)
+        MacOSContentView()
+        #endif
     }
 }
 
